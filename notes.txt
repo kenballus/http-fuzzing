@@ -1,0 +1,15 @@
+field-content is the thing on the rhs of the : in an http header field.
+It's defined to be (basically) r"field_vchar (\w+ field_vchar)?"
+field_vchar is defined to be (basically) r"[printable ascii character]"
+So does that mean we can only have at most 2 characters, separated by one or more spaces???
+This actually gets fixed in RFC 9110, (which is very modern) so I would expect that many servers have implemented this pretty weirdly.
+
+You can't have whitespace between the header field and the colon. This has caused security issues in the past. Look into what those are, and maybe we can use them.
+
+google accepts HTTP/1. and HTTP/1.9999999999999999, but not everybody does.
+It seems like the number of digits people are willing to accept in an HTTP version number, and whether they'll accept versions that don't exist, varies.
+
+If I send two of the same header, what happens?
+What if it's two of the same header, but with different capitalization?
+
+Microsoft ASP.NET uses some weird shit that involves a server called IIS that just forwards everything to another server called Kestrel. Might be worth looking into that.
