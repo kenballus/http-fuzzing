@@ -7,7 +7,7 @@ TEST_FILE := test.http
 c:
 	$(DAFFODIL) generate c --schema $(SCHEMA)
 
-test:
+parse:
 	$(DAFFODIL) parse --schema $(SCHEMA) $(TEST_FILE)
 
 unparse:
