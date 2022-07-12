@@ -3,10 +3,7 @@ SCHEMA := "http1_1.dfdl.xsd"
 OUT_FILE := "dfdl.out"
 TEST_FILE := test.http
 
-.PHONY: all test clean
-all:
-	$(DAFFODIL) save-parser -s $(SCHEMA) $(OUT_FILE)
-
+.PHONY: test unparse clean
 c:
 	$(DAFFODIL) generate c --schema $(SCHEMA)
 
