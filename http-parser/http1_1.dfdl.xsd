@@ -22,12 +22,6 @@ Author: Ben Kallus
   <xs:element name="http_message" type="http1_1:http_message">
   </xs:element>
 
-  <xs:complexType name="testing_type">
-    <xs:sequence>
-      <xs:element name="ipv4address" type="http1_1:ipv4address" />
-    </xs:sequence>
-  </xs:complexType>
-
   <xs:complexType name="http_message">
     <xs:sequence>
       <xs:element name="start_line" type="http1_1:start_line" />
@@ -57,18 +51,24 @@ Author: Ben Kallus
   <xs:simpleType name="colon"
                  dfdl:lengthKind="pattern"
                  dfdl:lengthPattern=":">
+    <xs:annotation>
+      <xs:appinfo source="http://www.ogf.org/dfdl/">
+        <dfdl:assert test="{ . ne '' }" />
+      </xs:appinfo>
+    </xs:annotation>
     <xs:restriction base="xs:string" />
   </xs:simpleType>
 
   <xs:simpleType name="ows"
                  dfdl:lengthKind="pattern"
-                 dfdl:lengthPattern="[\t ]*">
+                 dfdl:lengthPattern="[\t ]+">
     <xs:restriction base="xs:string" />
   </xs:simpleType>
 
   <xs:simpleType name="crlf"
-                 dfdl:lengthKind="pattern"
-                 dfdl:lengthPattern="\r\n">
+                 dfdl:lengthKind="explicit"
+                 dfdl:length="0"
+                 dfdl:terminator="%CR;%LF;">
     <xs:restriction base="xs:string" />
   </xs:simpleType>
 
@@ -102,6 +102,11 @@ Author: Ben Kallus
   <xs:simpleType name="space"
                  dfdl:lengthKind="pattern"
                  dfdl:lengthPattern=" ">
+    <xs:annotation>
+      <xs:appinfo source="http://www.ogf.org/dfdl/">
+        <dfdl:assert test="{ . ne '' }" />
+      </xs:appinfo>
+    </xs:annotation>
     <xs:restriction base="xs:string" />
   </xs:simpleType>
 
