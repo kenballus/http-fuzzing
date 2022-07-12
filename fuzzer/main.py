@@ -41,7 +41,12 @@ def unparse_http(tree: xml.etree.ElementTree) -> str:
 
 
 def byte_fuzz(tree: xml.etree.ElementTree) -> None:
-    pass
+    for elem in tree.getroot().iter():
+        for i in range(len(elem.text)):
+            if random.random() < .01:
+                byte = chr(random.randint(0, 255))
+                print(f"flipping a byte: {ord(elem.text[i])}->{ord(byte)}")
+                elem.text = elem.text[:i] + byte + elem.text[i + 1:]
 
 def prune_fuzz(tree: xml.etree.ElementTree) -> None:
     pass
@@ -53,6 +58,7 @@ def main():
 
     tree = parse_http(http_filename)
     byte_fuzz(tree)
+    xml.etree.ElementTree.dump(tree)
 
     outputs = [
         subprocess.check_output(
