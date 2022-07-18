@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<http1_1:http_message xmlns:http1_1="http1_1">
+  <start_line>
+    <method>gET</method>
+    <space> </space>
+    <request_target>
+      <origin_form>
+        <absolute_path>/</absolute_path>
+      </origin_form>
+    </request_target>
+    <space> </space>
+    <http_version>HTTP/1.1</http_version>
+  </start_line>
+  <crlf></crlf>
+  <field_line>
+    <field_name>Content-Length</field_name>
+    <colon>:</colon>
+    <ows> </ows>
+    <field_value>1</field_value>
+    <crlf></crlf>
+  </field_line>
+  <crlf></crlf>
+  <message_body>a
+</message_body>
+</http1_1:http_message>
