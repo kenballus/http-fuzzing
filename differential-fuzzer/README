@@ -1,0 +1,4 @@
+To run:
+    Edit the makefile to point CC and CXX to their AFL equivalents.
+    Edit the python program to point it to you AFL installation
+    make
