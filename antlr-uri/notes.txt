@@ -1,0 +1,16 @@
+userinfo is allowed to be empty.
+    i.e. the following is a valid URI:
+        scheme://@dartmouth.edu
+
+reg-name is alllowed to be empty.
+    i.e. the following is a valid URI:
+        scheme://
+
+port can be any number of digits.
+    i.e. the following are valid URIs:
+        scheme://dartmouth.edu:
+        scheme://dartmouth.edu:1111111111111111111111111111111111111111111
+
+HEXDIG cannot be lowercase. This probably has consequences in many more RFCs than just this one.
+
+The whole "scheme://" thing is actually just one of four options. In truth, "scheme:" is a totally valid URI because of path-empty. An authority is a totally optional part of a URI.
