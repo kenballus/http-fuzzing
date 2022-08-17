@@ -5,7 +5,7 @@ import io
 import pathlib
 from typing import List, Dict, Set, FrozenSet
 
-AFL_ROOT = "/home/bkallus/clones/AFLplusplus/"
+AFL_ROOT = "/home/bkallus/fuzzing/AFL/"
 AFL_SHOWMAP_PATH: pathlib.PosixPath = pathlib.PosixPath(f"{AFL_ROOT}/afl-showmap")
 SEED_INPUTS: List[pathlib.PosixPath] = [pathlib.PosixPath("./test.http_header")]
 TRACE_DIR: pathlib.PosixPath = pathlib.PosixPath("./traces")

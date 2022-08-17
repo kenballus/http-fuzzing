@@ -1,8 +1,12 @@
-CC  := ../afl-clang
-CXX := ../afl-clang++
-CFLAGS := -g -O0
-CXXFLAGS := -g -O0
-STYLE := "{BasedOnStyle: llvm, AllowShortFunctionsOnASingleLine: false, IndentWidth: 4, ColumnLimit: 150, BreakBeforeBraces: Custom, BraceWrapping: {BeforeElse: true}}"
+AFL_ROOT = /home/bkallus/fuzzing/AFL
+
+CC  = $(AFL_ROOT)/afl-clang
+CXX = $(AFL_ROOT)/afl-clang++
+
+CFLAGS   = -g -O0
+CXXFLAGS = -g -O0
+
+STYLE = "{BasedOnStyle: llvm, AllowShortFunctionsOnASingleLine: false, IndentWidth: 4, ColumnLimit: 150, BreakBeforeBraces: Custom, BraceWrapping: {BeforeElse: true}}"
 
 .PHONY: compile run clean show
 
