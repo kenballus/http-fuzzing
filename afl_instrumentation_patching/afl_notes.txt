@@ -1,0 +1,31 @@
+0000000000001210 <__afl_maybe_log>:
+    1210:       9f                      lahf
+    ; Stick the flags in ah
+    1211:       0f 90 c0                seto   %al
+    ; al = overflow flag
+    1214:       48 8b 15 5d 2e 00 00    mov    0x2e5d(%rip),%rdx        # 4078 <__afl_area_ptr>
+    ; Put shmem address in rdx
+    121b:       48 85 d2                test   %rdx,%rdx
+    121e:       74 28                   je     1248 <__afl_setup>
+    ; If the shmem address is 0, then it hasn't yet been allocated, so do that if necessary.
+
+0000000000001220 <__afl_store>:
+    1220:       48 33 0d 59 2e 00 00    xor    0x2e59(%rip),%rcx        # 4080 <__afl_prev_loc>
+    ; rcx <= curr_loc ^ prev_loc
+    1227:       48 31 0d 52 2e 00 00    xor    %rcx,0x2e52(%rip)        # 4080 <__afl_prev_loc>
+    ; prev_loc <= (curr_loc ^ prev_loc) ^ prev_loc = curr_loc
+    122e:       48 d1 2d 4b 2e 00 00    shrq   0x2e4b(%rip)        # 4080 <__afl_prev_loc>
+    ; shr the prev_loc (so we can distinguish between A->B and B->A)
+    1235:       80 04 0a 01             addb   $0x1,(%rdx,%rcx,1)
+    ; increment the byte of shmem associated with this edge
+    1239:       80 14 0a 00             adcb   $0x0,(%rdx,%rcx,1)
+    ; add the carry flag to that value as well?
+
+000000000000123d <__afl_return>:
+    123d:       04 7f                   add    $0x7f,%al
+    ; ???
+    123f:       9e                      sahf
+    ; Restore the flags
+    1240:       c3                      ret
+    ; get outta here :)
+    1241:       0f 1f 80 00 00 00 00    nopl   0x0(%rax)
